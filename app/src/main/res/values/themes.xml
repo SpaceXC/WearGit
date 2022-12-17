@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.WearGit" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#FF24292F</item>
+        <item name="android:windowBackground">#FF0D1117</item>
+    </style>
+</resources>
