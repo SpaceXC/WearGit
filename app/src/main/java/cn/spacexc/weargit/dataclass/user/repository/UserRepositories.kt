@@ -1,4 +1,4 @@
-package cn.spacexc.weargit.dataclass.repo.user
+package cn.spacexc.weargit.dataclass.user.repository
 
 
 import kotlinx.serialization.SerialName

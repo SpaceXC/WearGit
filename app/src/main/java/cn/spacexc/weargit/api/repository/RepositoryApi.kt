@@ -1,7 +1,8 @@
 package cn.spacexc.weargit.api.repository
 
-import cn.spacexc.weargit.dataclass.repo.user.UserRepositories
-import cn.spacexc.weargit.dataclass.repo.user.UserRepositoriesItem
+import cn.spacexc.weargit.dataclass.repo.content.RepositoryContentItem
+import cn.spacexc.weargit.dataclass.repo.issue.IssuesItem
+import cn.spacexc.weargit.dataclass.user.repository.UserRepositoriesItem
 import cn.spacexc.weargit.utils.NetworkUtils
 
 /* 
@@ -21,6 +22,22 @@ This is free software, and you are welcome to redistribute it under certain cond
 object RepositoryApi {
     fun getUserRepositoryByOAuth(onResult: (List<UserRepositoriesItem>) -> Unit) {
         NetworkUtils.getUrl<List<UserRepositoriesItem>>("https://api.github.com/users/SpaceXC/repos") {
+            onResult(it)
+        }
+    }
+
+    fun getRepositoryContents(
+        repositoryName: String,
+        path: String = "/",
+        onResult: (List<RepositoryContentItem>) -> Unit
+    ) {
+        NetworkUtils.getUrl<List<RepositoryContentItem>>("https://api.github.com/repos/$repositoryName/contents$path") {
+            onResult(it)
+        }
+    }
+
+    fun getRepositoryIssues(repositoryName: String, onResult: (List<IssuesItem>) -> Unit) {
+        NetworkUtils.getUrl<List<IssuesItem>>("https://api.github.com/repos/$repositoryName/issues") {
             onResult(it)
         }
     }

@@ -20,7 +20,18 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".ui.activity.LoginActivity" android:exported="false"/>
+        <activity
+            android:name=".ui.activity.FileContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.FolderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.RepositoryDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true"

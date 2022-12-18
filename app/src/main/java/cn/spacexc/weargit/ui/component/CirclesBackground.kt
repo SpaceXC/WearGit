@@ -1,5 +1,6 @@
 package cn.spacexc.weargit.ui.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -12,15 +13,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeTextDefaults
-import cn.spacexc.weargit.ui.theme.*
+import cn.spacexc.weargit.ui.theme.GithubBackgroundGay
+import cn.spacexc.weargit.ui.theme.WearGitTheme
+import cn.spacexc.weargit.ui.theme.googleSansFamily
+import cn.spacexc.weargit.ui.theme.puhuiFamily
 
 /**
  * Created by Xiaochang on 2022/9/16.
+ * Modified on 2022/12/17
  * I'm very cute so please be nice to my code!
  * 给！爷！写！注！释！
  * 给！爷！写！注！释！
@@ -38,7 +44,10 @@ fun RegularBackgroundWithTitleAndBackArrow(
     var textHeight by remember { mutableStateOf(0.dp) }
     val localDensity = LocalDensity.current
     WearGitTheme(darkTheme = true) {
-        Column(Modifier.fillMaxSize()) {
+        Column(
+            Modifier
+                .fillMaxSize()
+                .background(GithubBackgroundGay)) {
             Column(Modifier.fillMaxWidth()) {
                 Spacer(Modifier.height(6.dp))
                 if (isRound()) {
@@ -61,7 +70,7 @@ fun RegularBackgroundWithTitleAndBackArrow(
                                 },
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
-                            )
+                            ), maxLines = 1, overflow = TextOverflow.Ellipsis
                     )
                 } else {
                     Row(
@@ -101,7 +110,9 @@ fun RegularBackgroundWithTitleAndBackArrow(
                                             it.size.height.toDp()
                                         }
                                     }
-                                    .align(Alignment.CenterVertically)
+                                    .align(Alignment.CenterVertically),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
                             )
 
                             Spacer(modifier = Modifier.weight(1f))
@@ -111,7 +122,7 @@ fun RegularBackgroundWithTitleAndBackArrow(
                                 fontFamily = googleSansFamily,
                                 fontWeight = FontWeight.Medium,
                                 color = Color.White,
-                                modifier = Modifier.align(Alignment.CenterVertically)
+                                modifier = Modifier.align(Alignment.CenterVertically), maxLines = 1
                             )
                         }
                     }
@@ -122,5 +133,3 @@ fun RegularBackgroundWithTitleAndBackArrow(
         }   //内容
     }
 }
-
-

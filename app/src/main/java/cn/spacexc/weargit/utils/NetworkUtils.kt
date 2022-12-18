@@ -35,6 +35,10 @@ This is free software, and you are welcome to redistribute it under certain cond
  * 给！爷！写！注！释！
  */
 
+const val ACCEPT_TYPE_JSON = "application/vnd.github.json"
+const val ACCEPT_TYPE_RAW = "application/vnd.github.raw"
+const val ACCEPT_TYPE_HTML = "application/vnd.github.html"
+
 object NetworkUtils {
     val client = HttpClient(Android) {
         //expectSuccess = true
@@ -49,6 +53,7 @@ object NetworkUtils {
 
     inline fun <reified T> getUrl(
         url: String,
+        acceptType: String = ACCEPT_TYPE_JSON,
         crossinline failCallback: (e: Exception?, message: String, code: Int) -> Unit = { e, message, code ->
             MainScope().launch {
                 Toast.makeText(Application.context, message, Toast.LENGTH_SHORT).show()
@@ -62,12 +67,17 @@ object NetworkUtils {
                     accept(ContentType.Application.Json)
                     headers {
                         append("Authorization", DataUtils.getString("oauthToken", ""))
+                        append("Accept", acceptType)
                     }
                 }
                 Log.d(TAG, "getUrl: ${response.bodyAsText()}")
                 if (response.status == HttpStatusCode.OK) {
-                    val result: T = response.body()
-                    callback(result)
+                    if (acceptType == ACCEPT_TYPE_JSON) {
+                        val result: T = response.body()
+                        callback(result)
+                    } else {
+                        callback(response.bodyAsText() as T)
+                    }
                 } else {
                     failCallback(null, "网络请求失败，错误码${response.status.value}", response.status.value)
                 }
@@ -83,6 +93,7 @@ object NetworkUtils {
 
     inline fun <reified T> postUrl(
         url: String,
+        acceptType: String = ACCEPT_TYPE_JSON,
         formValues: Parameters = parametersOf(),
         crossinline failCallback: (e: Exception?, message: String, code: Int) -> Unit = { e, message, code ->
             MainScope().launch {
@@ -100,12 +111,17 @@ object NetworkUtils {
                         method = HttpMethod.Post
                         headers {
                             append("Authorization", DataUtils.getString("oauthToken", ""))
+                            append("Accept", acceptType)
                         }
                     }
                 Log.d(TAG, "postUrl: ${response.bodyAsText()}")
                 if (response.status == HttpStatusCode.OK) {
-                    val result: T = response.body()
-                    callback(result)
+                    if (acceptType == ACCEPT_TYPE_JSON) {
+                        val result: T = response.body()
+                        callback(result)
+                    } else {
+                        callback(response.bodyAsText() as T)
+                    }
                 } else {
                     failCallback(null, "网络请求失败，错误码${response.status.value}", response.status.value)
                 }

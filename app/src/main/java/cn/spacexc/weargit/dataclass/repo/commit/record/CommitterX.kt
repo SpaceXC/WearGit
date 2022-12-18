@@ -1,11 +1,11 @@
-package cn.spacexc.weargit.dataclass.repo.user
+package cn.spacexc.weargit.dataclass.repo.commit.record
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Owner(
+data class CommitterX(
     @SerialName("avatar_url")
     val avatarUrl: String,
     @SerialName("events_url")

@@ -1,4 +1,4 @@
-package cn.spacexc.weargit.dataclass.repo.user
+package cn.spacexc.weargit.dataclass.repo.info
 
 
 import kotlinx.serialization.SerialName
@@ -15,5 +15,5 @@ data class License(
     @SerialName("spdx_id")
     val spdxId: String,
     @SerialName("url")
-    val url: String?
+    val url: String
 )

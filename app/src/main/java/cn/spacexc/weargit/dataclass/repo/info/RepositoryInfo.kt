@@ -1,12 +1,19 @@
-package cn.spacexc.weargit.dataclass.repo.user
+package cn.spacexc.weargit.dataclass.repo.info
+
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserRepositoriesItem(
-    @SerialName("allow_forking")
-    val allowForking: Boolean,
+data class RepositoryInfo(
+    @SerialName("allow_auto_merge")
+    val allowAutoMerge: Boolean,
+    @SerialName("allow_merge_commit")
+    val allowMergeCommit: Boolean,
+    @SerialName("allow_rebase_merge")
+    val allowRebaseMerge: Boolean,
+    @SerialName("allow_squash_merge")
+    val allowSquashMerge: Boolean,
     @SerialName("archive_url")
     val archiveUrl: String,
     @SerialName("archived")
@@ -35,10 +42,12 @@ data class UserRepositoriesItem(
     val createdAt: String,
     @SerialName("default_branch")
     val defaultBranch: String,
+    @SerialName("delete_branch_on_merge")
+    val deleteBranchOnMerge: Boolean,
     @SerialName("deployments_url")
     val deploymentsUrl: String,
     @SerialName("description")
-    val description: String?,
+    val description: String,
     @SerialName("disabled")
     val disabled: Boolean,
     @SerialName("downloads_url")
@@ -76,7 +85,7 @@ data class UserRepositoriesItem(
     @SerialName("has_wiki")
     val hasWiki: Boolean,
     @SerialName("homepage")
-    val homepage: String?,
+    val homepage: String,
     @SerialName("hooks_url")
     val hooksUrl: String,
     @SerialName("html_url")
@@ -95,20 +104,22 @@ data class UserRepositoriesItem(
     val keysUrl: String,
     @SerialName("labels_url")
     val labelsUrl: String,
-    @SerialName("language")
-    val language: String?,
+    /*@SerialName("language")
+    val language: Any?,*/
     @SerialName("languages_url")
     val languagesUrl: String,
     @SerialName("license")
-    val license: License?,
+    val license: License,
     @SerialName("merges_url")
     val mergesUrl: String,
     @SerialName("milestones_url")
     val milestonesUrl: String,
     @SerialName("mirror_url")
-    val mirrorUrl: String?,
+    val mirrorUrl: String,
     @SerialName("name")
     val name: String,
+    @SerialName("network_count")
+    val networkCount: Int,
     @SerialName("node_id")
     val nodeId: String,
     @SerialName("notifications_url")
@@ -117,8 +128,12 @@ data class UserRepositoriesItem(
     val openIssues: Int,
     @SerialName("open_issues_count")
     val openIssuesCount: Int,
+    @SerialName("organization")
+    val organization: Organization,
     @SerialName("owner")
     val owner: Owner,
+    @SerialName("parent")
+    val parent: Parent,
     @SerialName("permissions")
     val permissions: Permissions,
     @SerialName("private")
@@ -131,6 +146,8 @@ data class UserRepositoriesItem(
     val releasesUrl: String,
     @SerialName("size")
     val size: Int,
+    @SerialName("source")
+    val source: Source,
     @SerialName("ssh_url")
     val sshUrl: String,
     @SerialName("stargazers_count")
@@ -139,6 +156,8 @@ data class UserRepositoriesItem(
     val stargazersUrl: String,
     @SerialName("statuses_url")
     val statusesUrl: String,
+    @SerialName("subscribers_count")
+    val subscribersCount: Int,
     @SerialName("subscribers_url")
     val subscribersUrl: String,
     @SerialName("subscription_url")
@@ -149,6 +168,10 @@ data class UserRepositoriesItem(
     val tagsUrl: String,
     @SerialName("teams_url")
     val teamsUrl: String,
+    @SerialName("temp_clone_token")
+    val tempCloneToken: String,
+    @SerialName("template_repository")
+    val templateRepository: TemplateRepository,
     @SerialName("topics")
     val topics: List<String>,
     @SerialName("trees_url")
@@ -162,7 +185,5 @@ data class UserRepositoriesItem(
     @SerialName("watchers")
     val watchers: Int,
     @SerialName("watchers_count")
-    val watchersCount: Int,
-    @SerialName("web_commit_signoff_required")
-    val webCommitSignoffRequired: Boolean
+    val watchersCount: Int
 )

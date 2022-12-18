@@ -3,7 +3,7 @@ package cn.spacexc.weargit.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cn.spacexc.weargit.api.repository.RepositoryApi
-import cn.spacexc.weargit.dataclass.repo.user.UserRepositoriesItem
+import cn.spacexc.weargit.dataclass.user.repository.UserRepositoriesItem
 import cn.spacexc.weargit.utils.DataUtils
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
